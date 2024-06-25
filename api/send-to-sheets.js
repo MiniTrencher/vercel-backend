@@ -42,7 +42,7 @@ module.exports = async (req, res) => {
       };
 
       const result = await sheets.spreadsheets.values.append({
-        spreadsheetId: 'your-spreadsheet-id', // Replace with your Google Sheets ID
+        spreadsheetId: '1XBi4ymH603oToPmEMFf2GFIY_pKKsLbYXf2_mk_vvj4', // Replace with your Google Sheets ID
         range: 'Sheet1!A2', // Adjust the range if necessary
         valueInputOption: 'RAW',
         resource,
