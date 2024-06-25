@@ -39,7 +39,7 @@ module.exports = async (req, res) => {
       });
 
       const values = [
-        [contactDate, contactSource, contactType, dealerType, contactHowType, contactDetail, ipAddresss]
+        [contactDate, contactSource, contactType, dealerType, contactHowType, contactDetail, ipAddress]
       ];
 
       const resource = {
