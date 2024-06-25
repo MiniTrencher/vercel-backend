@@ -24,6 +24,9 @@ module.exports = async (req, res) => {
     try {
       const { contactDate, contactSource, contactType, dealerType, contactHowType, contactDetail } = req.body;
       
+      // Extact IP Address from the request headers
+      const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+
       // Log the received data
       console.log('Received data:', {
         contactDate,
@@ -31,11 +34,12 @@ module.exports = async (req, res) => {
         contactType,
         dealerType,
         contactHowType,
-        contactDetail
+        contactDetail,
+        ipAddress
       });
 
       const values = [
-        [contactDate, contactSource, contactType, dealerType, contactHowType, contactDetail]
+        [contactDate, contactSource, contactType, dealerType, contactHowType, contactDetail, ipAddresss]
       ];
 
       const resource = {
