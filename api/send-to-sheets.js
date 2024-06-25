@@ -13,6 +13,15 @@ const auth = new google.auth.GoogleAuth({
 const sheets = google.sheets({ version: 'v4', auth });
 
 module.exports = async (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://office.minitrencher.com');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+    if (req.method === 'OPTIONS') {
+        res.status(200).end();
+        return;
+    }
+    
     if (req.method === 'POST') {
         const { contactSource, contactType, dealerType, contactHowType, contactDetail } = req.body;
 
