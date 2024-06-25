@@ -22,10 +22,7 @@ module.exports = async (req, res) => {
 
   if (req.method === 'POST') {
     try {
-      const { contactDate, contactSource, contactType, dealerType, contactHowType, contactDetail } = req.body;
-      
-      // Extact IP Address from the request headers
-      const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+      const { contactDate, contactSource, contactType, dealerType, contactHowType, contactDetail, userId } = req.body;
 
       // Log the received data
       console.log('Received data:', {
@@ -35,11 +32,11 @@ module.exports = async (req, res) => {
         dealerType,
         contactHowType,
         contactDetail,
-        ipAddress
+        userId
       });
 
       const values = [
-        [contactDate, contactSource, contactType, dealerType, contactHowType, contactDetail, ipAddress]
+        [contactDate, contactSource, contactType, dealerType, contactHowType, contactDetail, userId]
       ];
 
       const resource = {
