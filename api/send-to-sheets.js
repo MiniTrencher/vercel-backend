@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
 
         try {
             const result = await sheets.spreadsheets.values.append({
-                spreadsheetId: 'your-spreadsheet-id',
+                spreadsheetId: '1XBi4ymH603oToPmEMFf2GFIY_pKKsLbYXf2_mk_vvj4',
                 range: 'Sheet1!A2',
                 valueInputOption: 'RAW',
                 resource,
