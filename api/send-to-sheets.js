@@ -22,10 +22,11 @@ module.exports = async (req, res) => {
 
   if (req.method === 'POST') {
     try {
-      const { contactSource, contactType, dealerType, contactHowType, contactDetail } = req.body;
+      const { contactDate, contactSource, contactType, dealerType, contactHowType, contactDetail } = req.body;
       
       // Log the received data
       console.log('Received data:', {
+        contactDate,
         contactSource,
         contactType,
         dealerType,
@@ -34,7 +35,7 @@ module.exports = async (req, res) => {
       });
 
       const values = [
-        [contactSource, contactType, dealerType, contactHowType, contactDetail]
+        [contactDate, contactSource, contactType, dealerType, contactHowType, contactDetail]
       ];
 
       const resource = {
