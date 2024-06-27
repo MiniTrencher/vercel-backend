@@ -41,6 +41,7 @@ export default async function handler(req, res) {
     }
 
     const data = await getCellData(range);
+    console.log(data);
 
     if (data) {
         res.status(200).json({data});
