@@ -1,16 +1,29 @@
 import { GoogleApis, google } from 'googleapis';
+import Cors from 'cors';
 
 // Load environment variables from .env file
 const sheetsFileId = process.env.GOOGLE_SHEETS_FILE_ID;
 const base64Credentials = process.env.GOOGLE_APPLICATION_CREDENTIALS;
 const jsonCredentials = Buffer.from(base64Credentials, 'base64').toString('utf8');
 
+const cors = Cors({
+    methods: ['GET', 'HEAD'],
+    origin: "office.minitrencher.com"
+});
+
+function runMiddleware(req, res, fn) {
+    return new Promise((resolve, reject) => {
+        fn(req, res, (result) => {
+            if (result instanceof Error) {
+                return reject(result);
+            }
+            return resolve(result);
+        });
+    });
+}
+
 // Function to get data from a specific cell
 export const getCellData = async (range) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://office.minitrencher.com'); // Update with your frontend's URL
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
     const auth = new google.auth.GoogleAuth({
         credentials: JSON.parse(jsonCredentials),
         scopes: ['https://www.googleapis.com/auth/spreadsheets'],
@@ -38,14 +51,17 @@ export const getCellData = async (range) => {
 };
 
 export default async function handler(req, res) {
+    await runMiddleware(req, res, cors);
+
     const { range } = req.query;
 
     if (!range) {
         return res.status(400).send('Range parameter is required');
     }
 
+    console.log('Received request for range:', range);
+
     const data = await getCellData(range);
-    console.log(data);
 
     if (data) {
         res.status(200).json({data});
