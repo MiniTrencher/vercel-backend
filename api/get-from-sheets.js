@@ -16,7 +16,7 @@ export const getCellData = async (range) => {
 
   try {
     const response = await sheets.spreadsheets.values.get({
-      sheetsFileId,
+      spreadsheetId: sheetsFileId,
       range,
     });
 
