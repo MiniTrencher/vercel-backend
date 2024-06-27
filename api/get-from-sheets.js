@@ -8,7 +8,7 @@ const jsonCredentials = Buffer.from(base64Credentials, 'base64').toString('utf8'
 
 const cors = Cors({
     methods: ['GET', 'HEAD'],
-    origin: "office.minitrencher.com"
+    origin: "https://office.minitrencher.com"
 });
 
 function runMiddleware(req, res, fn) {
