@@ -1,8 +1,5 @@
 import { google } from 'googleapis';
-import dotenv from 'dotenv';
 import Cors from 'cors';
-
-dotenv.config();
 
 const sheetsFileId = process.env.GOOGLE_SHEETS_FILE_ID;
 const base64Credentials = process.env.GOOGLE_APPLICATION_CREDENTIALS;
