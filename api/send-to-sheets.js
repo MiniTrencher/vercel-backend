@@ -1,5 +1,6 @@
 const { google } = require('googleapis');
 
+const sheetsFileId = process.env.GOOGLE_SHEETS_FILE_ID;
 const base64Credentials = process.env.GOOGLE_APPLICATION_CREDENTIALS;
 const jsonCredentials = Buffer.from(base64Credentials, 'base64').toString('utf8');
 
@@ -44,7 +45,7 @@ module.exports = async (req, res) => {
       };
 
       const result = await sheets.spreadsheets.values.append({
-        spreadsheetId: '1XBi4ymH603oToPmEMFf2GFIY_pKKsLbYXf2_mk_vvj4', // Replace with your Google Sheets ID
+        spreadsheetId: sheetsFileId, // Replace with your Google Sheets ID
         range: 'Sheet1!A2', // Adjust the range if necessary
         valueInputOption: 'RAW',
         resource,
